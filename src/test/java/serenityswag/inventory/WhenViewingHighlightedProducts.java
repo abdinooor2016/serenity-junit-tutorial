@@ -37,15 +37,16 @@ public class WhenViewingHighlightedProducts {
         assertThat(productsOnDisplay).hasSize(6).contains("Sauce Labs Backpack");
 }
 
-//    @Test
-//    public void shouldDisplayCorrectProductDetailsPage() {
-//        login.as(User.STANDARD_USER);
-//
-//        String firstItemName = productList.titles().get(0);
-//        productList.openProductDetailsFor(firstItemName);
-//
-//        assertThat(productDetails.productName()).isEqualTo(firstItemName);
-//
-//    }
+    @Test
+    public void shouldDisplayCorrectProductDetailsPage() {
+        login.as(User.STANDARD_USER);
+
+        String firstItemName = productList.titles().get(0);
+        productList.openProductDetailsFor(firstItemName);
+
+        assertThat(productDetails.productName()).isEqualTo(firstItemName);
+        productDetails.productImageWithAltValuesOf(firstItemName).shouldBeVisible();
+
+    }
 
 }
