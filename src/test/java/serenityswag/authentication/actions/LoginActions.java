@@ -13,9 +13,9 @@ public class LoginActions extends UIInteractionSteps {
         open("https://www.saucedemo.com/");
 
         //Serenity classes
-        $("[data-test='username']").sendKeys(user.getUsername());
-        $("[data-test='password']").sendKeys(user.getPassword());
-        $("[data-test='login-button']").click();
+        $("#username").sendKeys(user.getUsername());
+        $("#password").sendKeys(user.getPassword());
+        $("#login-button']").click();
 
     }
 
