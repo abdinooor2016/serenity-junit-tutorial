@@ -5,6 +5,7 @@ import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -36,7 +37,17 @@ public class WhenViewingHighlightedProducts {
 
         assertThat(productsOnDisplay).hasSize(6).contains("Sauce Labs Backpack");
 }
+    @Test
+    public void highlightedProductsShouldDisplayTheCorrespondingImages() {
+        login.as(User.STANDARD_USER);
+        List<String> productsOnDisplay = productList.titles();
 
+        SoftAssertions softly = new SoftAssertions();
+        productsOnDisplay.forEach(
+                productName -> softly.assertThat(productList.imageTextForProduct(productName)).isEqualTo(productName));
+
+        softly.assertAll();
+    }
     @Test
     public void shouldDisplayCorrectProductDetailsPage() {
         login.as(User.STANDARD_USER);
