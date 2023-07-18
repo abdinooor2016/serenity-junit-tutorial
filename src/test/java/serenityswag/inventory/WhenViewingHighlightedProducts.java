@@ -1,5 +1,6 @@
 package serenityswag.inventory;
 
+import groovy.transform.ASTTest;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SerenityRunner.class)
 public class WhenViewingHighlightedProducts {
 
-    @Managed
+    @Managed(driver = "chrome")
     WebDriver driver;
 
     @Steps
@@ -25,6 +26,8 @@ public class WhenViewingHighlightedProducts {
 
     //This is how you create an Object
     ProductListPageObject productList;
+
+    ProductDetailsPageObject productDetails;
     @Test
     public void shouldDisplayHighlightedProductsOnTheWelcomePage() {
         login.as(User.STANDARD_USER);
@@ -33,5 +36,16 @@ public class WhenViewingHighlightedProducts {
 
         assertThat(productsOnDisplay).hasSize(6).contains("Sauce Labs Backpack");
 }
+
+//    @Test
+//    public void shouldDisplayCorrectProductDetailsPage() {
+//        login.as(User.STANDARD_USER);
+//
+//        String firstItemName = productList.titles().get(0);
+//        productList.openProductDetailsFor(firstItemName);
+//
+//        assertThat(productDetails.productName()).isEqualTo(firstItemName);
+//
+//    }
 
 }

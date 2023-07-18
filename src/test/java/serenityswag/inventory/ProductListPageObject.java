@@ -9,4 +9,10 @@ public class ProductListPageObject extends PageObject {
     public List<String> titles() {
         return findAll(".inventory_item_name").textContents();
     }
+
+    public void openProductDetailsFor(String itemName) {
+
+        find(By.linkText(itemName)).click();
+
+    }
 }
