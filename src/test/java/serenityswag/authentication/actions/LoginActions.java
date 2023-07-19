@@ -10,14 +10,13 @@ public class LoginActions extends UIInteractionSteps {
 
     @Step("Log in as {0}")
     public void as(User user) {
-        open("https://www.saucedemo.com/");
+        openUrl("https://www.saucedemo.com/");
 
         //Serenity classes
-        $("#username").sendKeys(user.getUsername());
+        $("#user-name").sendKeys(user.getUsername());
         $("#password").sendKeys(user.getPassword());
-        $("#login-button']").click();
+        $("#login-button").click();
 
     }
-
 
 }
