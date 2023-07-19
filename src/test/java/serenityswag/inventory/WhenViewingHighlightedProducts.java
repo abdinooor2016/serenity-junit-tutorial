@@ -53,6 +53,7 @@ public class WhenViewingHighlightedProducts {
         login.as(User.STANDARD_USER);
 
         String firstItemName = productList.titles().get(0);
+
         productList.openProductDetailsFor(firstItemName);
 
         assertThat(productDetails.productName()).isEqualTo(firstItemName);
