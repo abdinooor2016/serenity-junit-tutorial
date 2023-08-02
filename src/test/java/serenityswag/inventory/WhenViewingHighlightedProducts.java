@@ -1,14 +1,10 @@
 package serenityswag.inventory;
 
-import groovy.transform.ASTTest;
-import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
 import serenityswag.authentication.User;
 import serenityswag.authentication.actions.LoginActions;
 
@@ -24,11 +20,13 @@ public class WhenViewingHighlightedProducts {
 
     @Steps
     LoginActions login;
+    @Steps
+    ViewProductDetailsActions viewProductDetails;
 
     //This is how you create an Object
-    ProductListPageObject productList;
+    ProductList productList;
 
-    ProductDetailsPageObject productDetails;
+    ProductDetails productDetails;
     @Test
     public void shouldDisplayHighlightedProductsOnTheWelcomePage() {
         login.as(User.STANDARD_USER);
@@ -54,7 +52,8 @@ public class WhenViewingHighlightedProducts {
 
         String firstItemName = productList.titles().get(0);
 
-        productList.openProductDetailsFor(firstItemName);
+        //productList.openProductDetailsFor(firstItemName);
+        viewProductDetails.forProductWithName(firstItemName);
 
         assertThat(productDetails.productName()).isEqualTo(firstItemName);
         productDetails.productImageWithAltValuesOf(firstItemName).shouldBeVisible();
